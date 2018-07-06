@@ -23,7 +23,7 @@
     <!--</appender>-->
 
     <springProfile name="local">
-        <logger name="com.wemakeprice.unusedticket.api" level="DEBUG" />
+        <logger name="com.misakamikoto.springboot.api" level="DEBUG" />
 
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
@@ -31,7 +31,7 @@
     </springProfile>
 
     <springProfile name="!local">
-        <logger name="com.wemakeprice.unusedticket.api" level="DEBUG" />
+        <logger name="com.misakamikoto.springboot.api" level="DEBUG" />
 
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
