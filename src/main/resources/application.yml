@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+  master:
+    datasource:
+      url: jdbc:mysql://127.0.0.1
+      driver-class-name: com.mysql.jdbc.Driver
+      username: misaka
+      password: mikoto
+
+  slave:
+    datasource:
+      url: jdbc:mysql://127.0.0.1
+      driver-class-name: com.mysql.jdbc.Driver
+      username: misaka
+      password: mikoto
+---

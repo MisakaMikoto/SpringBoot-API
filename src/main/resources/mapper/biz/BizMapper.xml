@@ -1,0 +1,9 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.misakamikoto.springboot.api.biz.mapper.BizMapper">
+    <select id="getExample" resultType="com.misakamikoto.springboot.api.biz.dto.Biz">
+        select banner_title AS result from banner_event;
+    </select>
+</mapper>
+
