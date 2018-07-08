@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="center" style="width: 500px; margin-top: 100px;" ng-controller="bookController">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="query" type="text" class="form-control" ng-model="query" name="query" placeholder="검색어">
+        </div>
+
+        <div style="margin-top: 50px;">
+            <button type="button" class="btn btn-primary" ng-click="search()">Search</button>
+        </div>
+    </div>
+
+    <div>
+        <table id="books" style="width: 500px; margin-top: 50px;">
+        </table>
+    </div>
+        <!--<H2> {{ id }} 님의 완성된 시간표 입니다. </H2>-->
+</body>
+</html>

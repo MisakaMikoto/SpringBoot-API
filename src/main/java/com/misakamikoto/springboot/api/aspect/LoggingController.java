@@ -35,4 +35,10 @@ public class LoggingController {
         logger.info("==================== REST API CALL ====================");
         logger.info("Executing DELETE Type method : " + joinPoint.getSignature().getName());
     }
+
+    @Before("com.misakamikoto.springboot.api.aspect.pointcut.RestPointcut.view()")
+    public void beforeViewMapping(JoinPoint joinPoint) {
+        logger.info("==================== View Page CALL ====================");
+        logger.info("Executing View Page method : " + joinPoint.getSignature().getName());
+    }
 }

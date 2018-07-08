@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="center" style="width: 500px; margin-top: 100px;" ng-controller="signinController">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input id="id" type="text" class="form-control" ng-model="id" name="id" placeholder="ID (8 글자 까지)" maxlength="8">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input id="name" type="name" class="form-control" ng-model="name" name="name" placeholder="NAME">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input id="password" type="password" class="form-control" ng-model="password" name="password" placeholder="PASSWORD">
+    </div>
+
+    <div style="margin-top: 50px;">
+        <button type="button" class="btn btn-primary" ng-click="create()">Create</button>
+    </div>
+</div>
+</body>
+</html>

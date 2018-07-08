@@ -3,6 +3,9 @@ package com.misakamikoto.springboot.api.aspect.pointcut;
 import org.aspectj.lang.annotation.Pointcut;
 
 public class RestPointcut {
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
+    public void view() {}
+
     @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
     public void get() {}
 
