@@ -13,6 +13,9 @@ public class SearchHistory {
     Long id;
 
     @Column
+    String memberId;
+
+    @Column
     String query;
 
     @Column

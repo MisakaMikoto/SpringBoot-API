@@ -1,6 +1,5 @@
 package com.misakamikoto.springboot.api.book.history.service;
 
-import com.google.common.collect.Lists;
 import com.misakamikoto.springboot.api.book.history.dto.SearchHistory;
 import com.misakamikoto.springboot.api.book.history.repository.SearchHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class SearchHistoryService {
@@ -16,8 +17,9 @@ public class SearchHistoryService {
     @Autowired
     SearchHistoryRepository searchHistoryRepository;
 
-    public List<SearchHistory> getList(){
-        return Lists.newArrayList(this.searchHistoryRepository.findAll());
+    public List<SearchHistory> getList(String memberId){
+        return StreamSupport.stream(this.searchHistoryRepository.findAll().spliterator(), false)
+                .filter(searchHistory -> memberId.equals(searchHistory.getMemberId())).collect(Collectors.toList());
     }
 
     public void save(String query) {

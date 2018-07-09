@@ -4,6 +4,7 @@ import com.misakamikoto.springboot.api.login.dto.Login;
 import com.misakamikoto.springboot.api.login.dto.Member;
 import com.misakamikoto.springboot.api.login.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,6 +20,9 @@ public class LoginService {
 
     @Autowired
     LoginRepository loginRepository;
+
+    // BCryptPasswordEncoder (password)
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public Login signIn(Member member) {
         Optional<Member> result = this.findMember(member.getId());
@@ -51,6 +55,7 @@ public class LoginService {
     }
 
     private void createMember(Member member) {
+        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
         loginRepository.save(member);
     }
 
@@ -58,7 +63,7 @@ public class LoginService {
         Login login = new Login();
 
         if(findMember.isPresent()) {
-            if(this.checkPassword(findMember.get().getPassword(), member.getPassword())) {
+            if(this.checkPassword(member.getPassword(), findMember.get().getPassword())) {
                 login.setStatus(true);
                 login.setUserName(findMember.get().getName());
                 login.setMessage(LOGIN_SUCCESS_MESSAGE);
@@ -76,8 +81,8 @@ public class LoginService {
         return login;
     }
 
-    private boolean checkPassword(String findMemberPassword, String memberPassword) {
-        if(memberPassword.equals(findMemberPassword)) {
+    private boolean checkPassword(String memberPassword, String findMemberPassword) {
+        if(bCryptPasswordEncoder.matches(memberPassword, findMemberPassword)) {
             return true;
 
         } else {
