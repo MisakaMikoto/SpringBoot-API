@@ -1,37 +1,24 @@
-app.controller("bookController", ['$scope', '$location', '$http', function ($scope, $location, $http) {
-    $scope.search = function () {
-        searchKakaoBook();
+app.controller('bookController', ['$scope', '$location', function ($scope, $location) {
+    var book = new Book();
+    book.triggerEnter();
+
+    $scope.search = () => {
+        let searchPromise = book.searchKakaoAPI($scope.query);
+        searchPromise.then((response) => {
+            $scope.books = response;
+            $scope.$apply();
+
+        }, (error) => {
+            console.error('Failed!', error);
+        });
     };
 
-    function searchKakaoBook() {
-        let query = $scope.query;
-        let commonPromise = new CommonPromise();
-        commonPromise.get('/books?query=' + query).then((response) => {
-            let responseJson = JSON.parse(response);
-            clearGrid();
-            createGrid(responseJson);
+    $scope.showDetail = (index) => {
+        book.showDetail(index);
+    };
 
-        }, function(error) {
-            console.error("Failed!", error);
-        });
-    }
+    $scope.goHistories = () => {
+        $location.path('/history');
+    };
 
-    function clearGrid() {
-        $("#books").jqGrid('clearGridData');
-    }
-
-    function createGrid(responseJson) {
-        $("#books").jqGrid({
-            colModel: [
-                { name: "title" },
-                { name: "authors" },
-                { name: "datetime" },
-                { name: "publisher" },
-                { name: "price" },
-                { name: "salePrice" },
-                { name: "saleYn" }
-            ],
-            data: responseJson
-        });
-    }
 }]);

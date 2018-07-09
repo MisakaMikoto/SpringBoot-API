@@ -6,10 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class BookHistory {
+public class SearchHistory {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    String id;
+    Long id;
 
     @Column
     String query;

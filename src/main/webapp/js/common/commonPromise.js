@@ -24,7 +24,7 @@ class CommonPromise {
 
             // Handle network errors
             req.onerror = function() {
-                reject(Error("Network Error"));
+                reject(Error('Network Error'));
             };
 
             // Make the request
@@ -39,7 +39,7 @@ class CommonPromise {
             // Do the usual XHR stuff
             let req = new XMLHttpRequest();
             req.open('POST', url, true)
-            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
             req.onload = function() {
                 if (req.status == 200) {
@@ -52,7 +52,7 @@ class CommonPromise {
 
             // Handle network errors
             req.onerror = function() {
-                reject(Error("Network Error"));
+                reject(Error('Network Error'));
             };
 
             // Make the request

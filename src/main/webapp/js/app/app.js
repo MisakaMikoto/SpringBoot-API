@@ -9,7 +9,8 @@ var app = angular.module('app', ['ngRoute']).
         });
 
         $routeProvider
-            .when("/", {templateUrl: "/component/login.html"})
-            .when("/signin", {templateUrl: "/component/signin.html"})
-            .when("/book", {templateUrl: "/component/book.html"})
-    })
+            .when('/', {templateUrl: '/component/login.html'})
+            .when('/signin', {templateUrl: '/component/signin.html'})
+            .when('/book', {templateUrl: '/component/book.html'})
+            .when('/history', {templateUrl: '/component/searchHistory.html'})
+    });

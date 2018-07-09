@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="center" style="margin-top: 200px;" ng-controller="searchHistoryController">
+    <div>
+        <table class="table" style="margin-top: 50px;">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">검색 시간</th>
+                <th scope="col">검색 내용</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="searchHistory in searchHistories">
+                    <td><input type="checkbox" id="{{ searchHistory.id }}"></td>
+                    <td> {{ searchHistory.datetime }} </td>
+                    <td> {{ searchHistory.query }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</html>

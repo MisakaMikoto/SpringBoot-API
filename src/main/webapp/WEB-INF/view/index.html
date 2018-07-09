@@ -20,16 +20,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/center.css">
 
-    <!-- app -->
+    <!-- app (router) -->
     <script type="text/javascript" src="/js/app/app.js"></script>
 
-    <!-- route -->
+    <!-- angular controllers -->
     <script type="text/javascript" src="/js/controller/loginController.js"></script>
     <script type="text/javascript" src="/js/controller/signinController.js"></script>
     <script type="text/javascript" src="/js/controller/bookController.js"></script>
+    <script type="text/javascript" src="/js/controller/searchHistoryController.js"></script>
 
     <!-- common -->
+
     <script type="text/javascript" src="/js/common/commonPromise.js"></script>
+    <script type="text/javascript" src="/js/common/CommonRenderer.js"></script>
+
+    <!-- objects -->
+    <script type="text/javascript" src="/js/book/book.js"></script>
+    <script type="text/javascript" src="/js/book/history/searchHistory.js"></script>
+    <script type="text/javascript" src="/js/login/login.js"></script>
 </head>
     <body>
         <div ng-app="app">

@@ -6,6 +6,8 @@ import com.misakamikoto.springboot.api.login.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoginService {
 
@@ -19,25 +21,26 @@ public class LoginService {
     LoginRepository loginRepository;
 
     public Login signIn(Member member) {
-        boolean isDuplicate = this.findId(member.getId());
-
-        if(!isDuplicate) {
+        Optional<Member> result = this.findMember(member.getId());
+        if(!result.isPresent()) {
             this.createMember(member);
         }
-        return createSigninMessage(isDuplicate);
+        return createSignin(result.isPresent());
     }
 
     public Login logIn(Member member) {
-        return createLoginMessage(this.findId(member.getId()));
+        Optional<Member> findMember = this.findMember(member.getId());
+        return progressLogin(findMember, member);
     }
 
-    private boolean findId(String id) {
-        return loginRepository.existsById(id);
+    private Optional<Member> findMember(String id) {
+        return loginRepository.findById(id);
     }
 
-    private Login createSigninMessage(boolean isDuplicate) {
+    private Login createSignin(boolean isDuplicate) {
         Login login = new Login();
         login.setStatus(!isDuplicate);
+
         if(isDuplicate) {
             login.setMessage(SIGNIN_FAIL_MESSAGE);
 
@@ -51,15 +54,34 @@ public class LoginService {
         loginRepository.save(member);
     }
 
-    private Login createLoginMessage(boolean isLogin) {
+    private Login progressLogin(Optional<Member> findMember, Member member) {
         Login login = new Login();
-        login.setStatus(isLogin);
-        if(isLogin) {
-            login.setMessage(LOGIN_SUCCESS_MESSAGE);
+
+        if(findMember.isPresent()) {
+            if(this.checkPassword(findMember.get().getPassword(), member.getPassword())) {
+                login.setStatus(true);
+                login.setUserName(findMember.get().getName());
+                login.setMessage(LOGIN_SUCCESS_MESSAGE);
+
+            } else {
+                login.setStatus(false);
+                login.setMessage(LOGIN_FAIL_MESSAGE);
+            }
 
         } else {
+            login.setStatus(false);
             login.setMessage(LOGIN_FAIL_MESSAGE);
         }
+
         return login;
+    }
+
+    private boolean checkPassword(String findMemberPassword, String memberPassword) {
+        if(memberPassword.equals(findMemberPassword)) {
+            return true;
+
+        } else {
+            return false;
+        }
     }
 }
