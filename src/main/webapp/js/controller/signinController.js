@@ -7,12 +7,12 @@ app.controller("signinController", ['$scope', '$location', function ($scope, $lo
         };
 
         let commonPromise = new CommonPromise();
-        commonPromise.post('/account/signin', params).then((response) => {
+        commonPromise.post('/signin', params).then((response) => {
             let result = JSON.parse(response);
             alert(result.message);
 
             if(result.status) {
-                $location.path("/book");
+                $location.path("/");
                 $scope.$apply();
             }
         }, (error) => {

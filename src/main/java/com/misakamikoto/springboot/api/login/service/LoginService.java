@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,13 @@ public class LoginService {
 
     public Login logIn(Member member) {
         Optional<Member> findMember = this.findMember(member.getId());
+        return progressLogin(findMember, member);
+    }
+
+    public Login loginToSession(Login login) {
+        Optional<Member> findMember = this.findMember(login.getMemberId());
+        Member member = new Member();
+        member.setId(login.getMemberId());
         return progressLogin(findMember, member);
     }
 
@@ -65,7 +73,8 @@ public class LoginService {
         if(findMember.isPresent()) {
             if(this.checkPassword(member.getPassword(), findMember.get().getPassword())) {
                 login.setStatus(true);
-                login.setUserName(findMember.get().getName());
+                login.setMemberId(findMember.get().getId());
+                login.setMemberName(findMember.get().getName());
                 login.setMessage(LOGIN_SUCCESS_MESSAGE);
 
             } else {
@@ -88,5 +97,9 @@ public class LoginService {
         } else {
             return false;
         }
+    }
+
+    public Login checkSession(HttpSession httpSession) {
+        return (Login) httpSession.getAttribute("login");
     }
 }

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<body >
-    <div class="center" style="margin-top: 100px;" ng-controller="bookController">
-        <div style="float: right">
-            <h2> {{ userName }} </h2>
+<body>
+    <div class="center" style="margin-top: 50px;" ng-controller="bookController">
+        <div style="margin-top: 10px; margin-left: 90%;">
+            <span id="memberName" style="margin-right: 5px;"></span>
+            <button type="button" id="search" class="btn btn-primary" ng-click="logout()">Logout</button>
         </div>
 
-        <div class="input-group" style="width: 500px;">
+        <div class="input-group" style="width: 350px;">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input id="query" type="text" class="form-control" ng-model="query" name="query" placeholder="검색어">
         </div>

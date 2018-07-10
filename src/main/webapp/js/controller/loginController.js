@@ -1,12 +1,17 @@
-app.controller('loginController', ['$scope', '$location', function ($scope, $location) {
+app.controller('loginController', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
     var login = new Login();
-    login.triggerEnter();
+
+    if(checkCookies()) {
+        $location.path('/book');
+    }
 
     $scope.login = () => {
         let loginPromise = login.findUser($scope.id, $scope.password);
         loginPromise.then((response) => {
             if(response.status) {
-                alert(response.message + ' welcome ' + response.userName);
+                $cookies.put('memberId', response.memberId);
+                $cookies.put('memberName', response.memberName);
+                alert(response.message + ' welcome ' + response.memberName);
                 $location.path('/book');
                 $scope.$apply();
 
@@ -21,4 +26,13 @@ app.controller('loginController', ['$scope', '$location', function ($scope, $loc
     $scope.signin = () => {
         $location.path('/signin');
     };
+
+    function checkCookies() {
+        if($cookies.get('memberId') !== undefined) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }]);

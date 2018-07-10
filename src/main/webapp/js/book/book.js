@@ -7,23 +7,11 @@ class Book {
         this._booksJSON = booksJSON;
     }
 
-    get booksJSON() {
-        return this._booksJSON;
-    }
-
-    triggerEnter() {
-        $('#query').keydown((key) => {
-            if (key.keyCode == 13) {
-                $('#search').trigger('click');
-            }
-        });
-    }
-
-    searchKakaoAPI(query) {
+    searchKakaoAPI(query, memberId) {
         let sendQuery = query;
         let commonPromise = new CommonPromise();
 
-        return commonPromise.get('/books?query=' + sendQuery).then((response) => {
+        return commonPromise.get('/books?query=' + sendQuery + "&memberId=" + memberId).then((response) => {
             let booksJSON = JSON.parse(response);
             this.booksJSON = booksJSON;
 
@@ -34,7 +22,7 @@ class Book {
         });
     }
 
-    showDetail(tr) {
-        let index = $('tr', $(tr).closest("table")).index(tr);
+    showDetail(index) {
+        return this._booksJSON[index];
     }
 }

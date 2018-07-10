@@ -6,5 +6,6 @@ import lombok.Data;
 public class Login {
     boolean status;
     String message;
-    String userName;
+    String memberId;
+    String memberName;
 }

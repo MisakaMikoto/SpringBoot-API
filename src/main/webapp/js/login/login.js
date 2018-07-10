@@ -1,14 +1,6 @@
 class Login {
     constructor() {}
 
-    triggerEnter() {
-        $('#password').keydown((key) => {
-            if (key.keyCode == 13) {
-                $('#login').trigger('click');
-            }
-        });
-    }
-
     findUser(id, password) {
         let params = {
             id: id,
@@ -16,7 +8,7 @@ class Login {
         };
 
         let commonPromise = new CommonPromise();
-        return commonPromise.post('/account/login', params).then((response) => {
+        return commonPromise.post('/login', params).then((response) => {
             return JSON.parse(response);
 
         }, function(error) {

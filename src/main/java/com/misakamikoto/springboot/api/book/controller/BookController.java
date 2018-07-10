@@ -23,8 +23,8 @@ public class BookController {
     SearchHistoryService bookSearchHistoryService;
 
     @GetMapping("/books")
-    public ResponseEntity search(@RequestParam("query") String query) throws IOException {
-        this.bookSearchHistoryService.save(query);
+    public ResponseEntity search(@RequestParam("query") String query, @RequestParam("memberId") String memberId) throws IOException {
+        this.bookSearchHistoryService.save(query, memberId);
         List<Book> books = bookService.getBooks(query);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }

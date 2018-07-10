@@ -22,9 +22,10 @@ public class SearchHistoryService {
                 .filter(searchHistory -> memberId.equals(searchHistory.getMemberId())).collect(Collectors.toList());
     }
 
-    public void save(String query) {
+    public void save(String query, String memberId) {
         SearchHistory bookHistory = new SearchHistory();
         bookHistory.setQuery(query);
+        bookHistory.setMemberId(memberId);
         bookHistory.setDatetime(this.createCurrentDateTime());
 
         this.searchHistoryRepository.save(bookHistory);

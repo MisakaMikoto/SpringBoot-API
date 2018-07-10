@@ -1,9 +1,9 @@
 class SearchHistory {
     constructor(){};
 
-    getList() {
+    getList(memberId) {
         let commonPromise = new CommonPromise();
-        return commonPromise.get('/histories').then((response) => {
+        return commonPromise.get('/histories?memberId=' + memberId).then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
