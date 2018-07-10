@@ -18,7 +18,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 
         if(session == null) {
             response.sendRedirect("/logout");
-            return true;
+            return false;
 
         } else {
             return true;

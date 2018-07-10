@@ -1,4 +1,4 @@
-app.controller('bookController', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
+app.controller('bookController', ['$scope', '$location', '$cookies', '$uibModal', function ($scope, $location, $cookies, $uibModal) {
 
     var book = new Book();
 
@@ -22,6 +22,7 @@ app.controller('bookController', ['$scope', '$location', '$cookies', function ($
     };
 
     $scope.showDetail = (index) => {
+        createModal();
         let detailBook = book.showDetail(index);
         console.log(detailBook);
     };
@@ -43,5 +44,16 @@ app.controller('bookController', ['$scope', '$location', '$cookies', function ($
 
     function setUserName() {
         $('#memberName').html($cookies.get('memberName'));
+    }
+
+    function createModal() {
+        $uibModal.open({
+            templateUrl: '/component/detail.html',
+            controller: function ($scope, $uibModalInstance) {
+                $scope.ok = function () {
+                    $uibModalInstance.close();
+                };
+            }
+        });
     }
 }]);

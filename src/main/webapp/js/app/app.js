@@ -1,7 +1,7 @@
 /**
  * Created by MisakaMikoto on 2017-08-23.
  */
-var app = angular.module('app', ['ngRoute', 'ngCookies']).
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'ui.bootstrap']).
     config(function($routeProvider, $locationProvider) {
         $locationProvider.html5Mode({
             enabled: true,
