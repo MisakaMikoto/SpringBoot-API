@@ -13,38 +13,43 @@
     <div class="center" style="margin-top: 50px;" ng-controller="searchController">
         <div style="margin-top: 10px; margin-left: 90%;">
             <span id="memberName" style="margin-right: 5px;"></span>
-            <button type="button" class="btn btn-primary" ng-click="logout()">Logout</button>
+            <button type="button" class="btn btn-primary" ng-click="logout()">로그아웃</button>
         </div>
 
         <div class="input-group" style="width: 350px;">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input id="query" type="text" class="form-control" ng-model="query" name="query" placeholder="검색어">
-
-            <select class="form-control" id="size">
-                <option value="0">검색 개수</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-            </select>
-
-            <select class="form-control" id="sort">
-                <option value="none">정렬 기준</option>
-                <option value="accuracy">정확도순</option>
-                <option value="recency">최신순</option>
-                <option value="sales">판매량순</option>
-            </select>
-
-        </div>
-
-        <div style="width: 500px; margin-top: 35px;">
-            <button type="button" id="search" class="btn btn-primary" ng-click="search()">Search</button>
-            <button type="button" class="btn btn-primary" ng-click="goHistories()">Search Histories</button>
         </div>
 
         <div>
-            <table class="table" style="margin-top: 35px;">
+            <div class="input-group" style="width: 350px;">
+                <select class="form-control" id="size">
+                    <option value="0">페이지 당 검색 개수</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+
+            <div class="input-group" style="width: 350px;">
+                <select class="form-control" id="sort">
+                    <option value="none">정렬 기준</option>
+                    <option value="accuracy">정확도순</option>
+                    <option value="recency">최신순</option>
+                    <option value="sales">판매량순</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="width: 500px; margin-top: 35px;">
+            <button type="button" id="search" class="btn btn-primary" ng-click="search()">검색</button>
+            <button type="button" class="btn btn-primary" ng-click="goHistories()">검색 히스토리</button>
+        </div>
+
+        <div>
+            <table class="table" style="margin-top: 35px; display: none">
                 <thead>
                 <tr>
                     <th scope="col">#</th>

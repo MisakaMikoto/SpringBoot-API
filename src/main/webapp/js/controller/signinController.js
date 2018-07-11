@@ -1,4 +1,7 @@
 app.controller("signinController", ['$scope', '$location', function ($scope, $location) {
+
+    var signin = new Signin();
+
     $scope.create = () => {
         let params = {
             id: $scope.id,
@@ -6,17 +9,24 @@ app.controller("signinController", ['$scope', '$location', function ($scope, $lo
             name: $scope.name
         };
 
-        let commonPromise = new CommonPromise();
-        commonPromise.post('/signin', params).then((response) => {
-            let result = JSON.parse(response);
-            alert(result.message);
-
-            if(result.status) {
+        let signinPromise = signin.createAccount(params);
+        signinPromise.then((response) => {
+            if (response.status) {
+                alert("회원가입에 성공하였습니다.");
                 $location.path("/");
                 $scope.$apply();
+
+            } else {
+                alert(response.message);
             }
+
         }, (error) => {
-            console.error("Failed!", error);
+            console.error('Failed!', error);
         });
+    };
+
+    $scope.cancel = () => {
+        $location.path("/");
+        $scope.$apply();
     };
 }]);

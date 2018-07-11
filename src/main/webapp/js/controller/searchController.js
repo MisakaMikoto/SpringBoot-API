@@ -1,7 +1,6 @@
 app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModal', function ($scope, $location, $cookies, $uibModal) {
 
     var search = new Search();
-
     setUserName();
 
     $scope.search = () => {
@@ -33,7 +32,8 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
     }
 
     function setUserName() {
-        $('#memberName').html($cookies.get('memberName'));
+        let memberName = $cookies.get('memberName') + " 님 ";
+        $('#memberName').html(memberName);
     }
 
     function createModal() {
@@ -48,39 +48,20 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
         });
     }
 
-    function validSearch() {
-        if($('#query').val().length == "") {
-            alert("input search query");
-            return false;
-
-        } else if($( "#size option:selected" ).val() == "0") {
-            alert("select search size");
-            return false;
-
-        } else if($( "#sort option:selected" ).val() == "none") {
-            alert("select search sort");
-            return false;
-
-        } else {
-            return true;
-        }
-    }
-
     function searchForKakao(pageIndex) {
         $scope.books = [];
 
-        if(validSearch()) {
+        if(search.validSearch()) {
             let searchPromise = search.searchKakaoAPI($scope.query, pageIndex, $cookies.get('memberId'));
             searchPromise.then((response) => {
                 if (response.books.length > 0) {
-                    console.log(response);
-
+                    $('.table').show();
                     $scope.books = response.books;
                     $scope.pageList = search.pageList;
                     $scope.$apply();
 
                 } else {
-                    alert('session disconnected. return login page');
+                    alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
                     logout();
                 }
 

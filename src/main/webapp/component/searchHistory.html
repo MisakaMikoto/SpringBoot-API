@@ -6,11 +6,19 @@
 </head>
 <body>
 <div class="center" style="margin-top: 100px;" ng-controller="searchHistoryController">
-    <div style="margin-top: 10px; margin-left: 90%;">
-        <button type="button" class="btn btn-primary" ng-click="delete()">Delete</button>
+    <div style="float: left; margin-left: 10px;">
+        <button type="button" class="btn btn-primary" ng-click="delete()">삭제</button>
+        <button type="button" class="btn btn-primary" ng-click="back()">돌아가기</button>
     </div>
 
     <div>
+        <div style="float: right; margin-right: 10px;">
+            <select class="form-control" id="sort">
+                <option value="none">정렬 기준</option>
+                <option value="query">검색어</option>
+                <option value="datetime">시간</option>
+            </select>
+        </div>
         <table class="table" style="margin-top: 10px;">
             <thead>
             <tr>

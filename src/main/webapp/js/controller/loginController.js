@@ -8,17 +8,17 @@ app.controller('loginController', ['$scope', '$location', '$cookies', function (
     $scope.login = () => {
         let loginPromise = login.findUser($scope.id, $scope.password);
         loginPromise.then((response) => {
-            if(response.status) {
+            if (response.status) {
                 $cookies.put('memberId', response.memberId);
                 $cookies.put('memberName', response.memberName);
-                alert(response.message + ' welcome ' + response.memberName);
+                alert(response.message + ' 환영합니다. ' + response.memberName + ' 님');
                 $location.path('/search');
                 $scope.$apply();
 
             } else {
                 alert(response.message);
             }
-        },(error) => {
+        }, (error) => {
             console.error('Failed!', error);
         });
     };

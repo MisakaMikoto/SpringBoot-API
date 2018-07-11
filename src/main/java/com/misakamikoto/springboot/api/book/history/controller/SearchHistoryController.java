@@ -20,12 +20,25 @@ public class SearchHistoryController {
 
     @GetMapping("/histories")
     public ResponseEntity getList(@RequestParam("memberId") String memberId) {
-        List<SearchHistory> searchHistories = this.searchHistoryService.getList(memberId);
+        List<SearchHistory> searchHistories = this.searchHistoryService.getListById(memberId);
+        return new ResponseEntity<>(searchHistories, HttpStatus.OK);
+    }
+
+    @GetMapping("/histories/query")
+    public ResponseEntity getListByQuery(@RequestParam("memberId") String memberId) {
+        List<SearchHistory> searchHistories = this.searchHistoryService.getListByQuery(memberId);
+        return new ResponseEntity<>(searchHistories, HttpStatus.OK);
+    }
+
+    @GetMapping("/histories/datetime")
+    public ResponseEntity getListByDatetime(@RequestParam("memberId") String memberId) {
+        List<SearchHistory> searchHistories = this.searchHistoryService.getListByDatetime(memberId);
         return new ResponseEntity<>(searchHistories, HttpStatus.OK);
     }
 
     @DeleteMapping("/histories")
-    public ResponseEntity deleteHistories(@RequestParam("memberId") String memberId, @RequestParam("historiesId") String historyIds) {
-        return new ResponseEntity<>("", HttpStatus.OK);
+    public ResponseEntity deleteHistories(@RequestParam("memberId") String memberId, @RequestParam("ids") String ids) {
+        List<SearchHistory> searchHistories = this.searchHistoryService.deleteHistories(memberId, ids);
+        return new ResponseEntity<>(searchHistories, HttpStatus.OK);
     }
 }

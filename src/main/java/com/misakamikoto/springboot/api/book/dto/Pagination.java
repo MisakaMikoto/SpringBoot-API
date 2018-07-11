@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by ryuha on 2018. 7. 11..
  */
 @Data
-public class Paging {
+public class Pagination {
     int totalCount;
     int pageableCount;
     boolean isEnd;

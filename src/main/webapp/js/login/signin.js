@@ -1,14 +1,9 @@
-class Login {
+class Signin {
     constructor() {}
 
-    findUser(id, password) {
-        let params = {
-            id: id,
-            password: password
-        };
-
+    createAccount(params) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.post('/login', params).then((response) => {
+        return commonRequestPromise.post('/signin', params).then((response) => {
             return JSON.parse(response);
 
         }, function(error) {

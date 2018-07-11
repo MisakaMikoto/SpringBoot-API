@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -17,9 +19,21 @@ public class SearchHistoryService {
     @Autowired
     SearchHistoryRepository searchHistoryRepository;
 
-    public List<SearchHistory> getList(String memberId){
+    public List<SearchHistory> getListById(String memberId){
         return StreamSupport.stream(this.searchHistoryRepository.findAll().spliterator(), false)
                 .filter(searchHistory -> memberId.equals(searchHistory.getMemberId())).collect(Collectors.toList());
+    }
+
+    public List<SearchHistory> getListByQuery(String memberId){
+        List<SearchHistory> searchHistories = this.getListById(memberId);
+        searchHistories.sort(Comparator.comparing(SearchHistory::getQuery));
+        return searchHistories;
+    }
+
+    public List<SearchHistory> getListByDatetime(String memberId){
+        List<SearchHistory> searchHistories = this.getListById(memberId);
+        searchHistories.sort(Comparator.comparing(SearchHistory::getDatetime));
+        return searchHistories;
     }
 
     public void save(String query, String memberId) {
@@ -31,9 +45,11 @@ public class SearchHistoryService {
         this.searchHistoryRepository.save(bookHistory);
     }
 
-    public List<SearchHistory> removeHistories(String memberId, String historyIds) {
-//        this.searchHistoryRepository.delete
-        return null;
+    public List<SearchHistory> deleteHistories(String memberId, String historyIds) {
+        for(String id : historyIds.split(",")) {
+            this.searchHistoryRepository.deleteById(Long.valueOf(id));
+        }
+        return this.getListById(memberId);
     }
 
     private String createCurrentDateTime() {

@@ -13,11 +13,11 @@ import java.util.Optional;
 @Service
 public class LoginService {
 
-    private String LOGIN_SUCCESS_MESSAGE = "Login Successful";
-    private String LOGIN_FAIL_MESSAGE = "Login Fail. Confirm your password";
+    private static final String LOGIN_SUCCESS_MESSAGE = "로그인에 성공하였습니다.";
+    private static final String LOGIN_FAIL_MESSAGE = "로그인에 실패하였습니다. 비밀번호를 확인해 주세요.";
 
-    private String SIGNIN_SUCCESS_MESSAGE = "Signin Successful";
-    private String SIGNIN_FAIL_MESSAGE = "Signin Fail. Duplicated id";
+    private static final String SIGNIN_SUCCESS_MESSAGE = "회원가입에 성공하였습니다.";
+    private static final String SIGNIN_FAIL_MESSAGE = "회원가입이 ID 중복으로 인해 실패하였습니다.";
 
     @Autowired
     LoginRepository loginRepository;
@@ -97,9 +97,5 @@ public class LoginService {
         } else {
             return false;
         }
-    }
-
-    public Login checkSession(HttpSession httpSession) {
-        return (Login) httpSession.getAttribute("login");
     }
 }

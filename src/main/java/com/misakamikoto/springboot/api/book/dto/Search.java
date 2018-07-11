@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class Search {
     List<Book> books;
-    Paging paging;
+    Pagination pagination;
 }

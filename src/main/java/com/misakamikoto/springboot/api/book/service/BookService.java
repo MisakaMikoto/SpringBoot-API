@@ -3,7 +3,7 @@ package com.misakamikoto.springboot.api.book.service;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.misakamikoto.springboot.api.book.dto.Book;
-import com.misakamikoto.springboot.api.book.dto.Paging;
+import com.misakamikoto.springboot.api.book.dto.Pagination;
 import com.misakamikoto.springboot.api.book.dto.Search;
 import com.misakamikoto.springboot.api.common.rest.RestHttpGet;
 import com.misakamikoto.springboot.api.config.database.properties.KakaoProperties;
@@ -38,11 +38,11 @@ public class BookService {
         JsonObject booksJsonObject = this.parseJson(booksJson);
 
         List<Book> books = gson.fromJson(booksJsonObject.get("documents").toString(), new TypeToken<List<Book>>(){}.getType());
-        Paging paging = gson.fromJson(booksJsonObject.get("meta").toString(), Paging.class);
+        Pagination pagination = gson.fromJson(booksJsonObject.get("meta").toString(), Pagination.class);
 
         Search search = new Search();
         search.setBooks(books);
-        search.setPaging(paging);
+        search.setPagination(pagination);
 
         return search;
     }
