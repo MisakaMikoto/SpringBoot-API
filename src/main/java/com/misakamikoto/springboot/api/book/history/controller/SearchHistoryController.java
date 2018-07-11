@@ -5,6 +5,7 @@ import com.misakamikoto.springboot.api.book.history.service.SearchHistoryService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +22,10 @@ public class SearchHistoryController {
     public ResponseEntity getList(@RequestParam("memberId") String memberId) {
         List<SearchHistory> searchHistories = this.searchHistoryService.getList(memberId);
         return new ResponseEntity<>(searchHistories, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/histories")
+    public ResponseEntity deleteHistories(@RequestParam("memberId") String memberId, @RequestParam("historiesId") String historyIds) {
+        return new ResponseEntity<>("", HttpStatus.OK);
     }
 }

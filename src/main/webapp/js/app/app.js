@@ -11,6 +11,6 @@ var app = angular.module('app', ['ngRoute', 'ngCookies', 'ui.bootstrap']).
         $routeProvider
             .when('/', {templateUrl: '/component/login.html'})
             .when('/signin', {templateUrl: '/component/signin.html'})
-            .when('/book', {templateUrl: '/component/book.html'})
+            .when('/search', {templateUrl: '/component/search.html'})
             .when('/history', {templateUrl: '/component/searchHistory.html'})
     });

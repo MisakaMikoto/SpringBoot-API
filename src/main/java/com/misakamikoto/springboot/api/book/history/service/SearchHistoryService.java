@@ -31,6 +31,11 @@ public class SearchHistoryService {
         this.searchHistoryRepository.save(bookHistory);
     }
 
+    public List<SearchHistory> removeHistories(String memberId, String historyIds) {
+//        this.searchHistoryRepository.delete
+        return null;
+    }
+
     private String createCurrentDateTime() {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

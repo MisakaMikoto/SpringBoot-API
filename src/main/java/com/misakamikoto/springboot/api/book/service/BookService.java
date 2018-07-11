@@ -1,16 +1,18 @@
 package com.misakamikoto.springboot.api.book.service;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.misakamikoto.springboot.api.book.dto.Book;
+import com.misakamikoto.springboot.api.book.dto.Paging;
+import com.misakamikoto.springboot.api.book.dto.Search;
 import com.misakamikoto.springboot.api.common.rest.RestHttpGet;
 import com.misakamikoto.springboot.api.config.database.properties.KakaoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,20 +28,32 @@ public class BookService {
     @Autowired
     KakaoProperties kakaoProperties;
 
-    public List<Book> getBooks(String query) throws IOException {
+    public Search getBooks(String query, String sort, int page, int size) throws IOException {
         RestHttpGet restHttpGet = new RestHttpGet();
         Map<String, String> headerMap = createSearchHeader.apply(kakaoProperties.getAppKey());
-        String booksJson = restHttpGet.call(kakaoProperties.getSearchUrl(), query, headerMap);
-        String parseBooksJson = parseBooksJson(booksJson);
-        List<Book> books = gson.fromJson(parseBooksJson, new TypeToken<List<Book>>(){}.getType());
-        return books;
+
+        String callUrl = this.createUrl(query, sort, page, size);
+        String booksJson = restHttpGet.call(callUrl, headerMap);
+
+        JsonObject booksJsonObject = this.parseJson(booksJson);
+
+        List<Book> books = gson.fromJson(booksJsonObject.get("documents").toString(), new TypeToken<List<Book>>(){}.getType());
+        Paging paging = gson.fromJson(booksJsonObject.get("meta").toString(), Paging.class);
+
+        Search search = new Search();
+        search.setBooks(books);
+        search.setPaging(paging);
+
+        return search;
     }
 
-    private String parseBooksJson(String booksJson) {
-        int start = booksJson.indexOf("[");
-        int last = booksJson.lastIndexOf("]") + 1;
+    private JsonObject parseJson(String booksJson) {
+        JsonElement jsonElement = gson.fromJson (booksJson, JsonElement.class);
+        return jsonElement.getAsJsonObject();
+    }
 
-        return booksJson.substring(start, last);
+    private String createUrl(String query, String sort, int page, int size) throws UnsupportedEncodingException {
+        return kakaoProperties.getSearchUrl() + "?query=" + URLEncoder.encode(query, "UTF-8") + "&sort=" + sort + "&page="+ page + "&size=" + size;
     }
 
     Function<String, Map<String, String>> createSearchHeader = (appKey) -> {

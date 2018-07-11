@@ -2,7 +2,7 @@ app.controller('loginController', ['$scope', '$location', '$cookies', function (
     var login = new Login();
 
     if(checkCookies()) {
-        $location.path('/book');
+        $location.path('/search');
     }
 
     $scope.login = () => {
@@ -12,7 +12,7 @@ app.controller('loginController', ['$scope', '$location', '$cookies', function (
                 $cookies.put('memberId', response.memberId);
                 $cookies.put('memberName', response.memberName);
                 alert(response.message + ' welcome ' + response.memberName);
-                $location.path('/book');
+                $location.path('/search');
                 $scope.$apply();
 
             } else {

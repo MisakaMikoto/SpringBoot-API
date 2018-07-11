@@ -4,16 +4,69 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-    <div class="modal-header">
-        <h3 class="modal-title">Hello</h3>
-    </div>
+    <div class="center" ng-controller="detailController" style="width: 100%;">
+        <h3 class="modal-title"> {{ detail.title }} </h3>
 
-    <div class="modal-body">
-        I'm a modal!
-    </div>
+        <table class="table" style="margin-top: 10px;">
+            <tbody>
+                <tr>
+                    <td bgcolor="#f0f8ff"> 도서 제목 </td>
+                    <td> {{ detail.title }} </td>
+                    <td bgcolor="#f0f8ff"> 책 링크 (URL) </td>
+                    <td> {{ detail.url }} </td>
+                </tr>
 
-    <div class="modal-footer">
+                <tr>
+                    <td bgcolor="#f0f8ff"> 도서 소개 </td>
+                    <td colspan="3"> {{ detail.contents }} </td>
+                </tr>
+
+                <tr class="table-primary">
+                    <td bgcolor="#f0f8ff"> ISBN 번호 </td>
+                    <td> {{ detail.isbn }} </td>
+                    <td bgcolor="#f0f8ff"> 도서 출판 날짜 </td>
+                    <td> {{ detail.datetime }} </td>
+
+                </tr>
+
+                <tr class="table-primary">
+                    <td bgcolor="#f0f8ff"> 도서 저자 리스트 </td>
+                    <td> {{ detail.authors }} </td>
+                    <td bgcolor="#f0f8ff"> 번역자 리스트 </td>
+                    <td> {{ detail.translators }} </td>
+                </tr>
+
+                <tr class="table-primary">
+                    <td bgcolor="#f0f8ff"> 도서 정가 </td>
+                    <td> {{ detail.price }} </td>
+                    <td bgcolor="#f0f8ff"> 도서 판매가 </td>
+                    <td> {{ detail.salePrice }} </td>
+                </tr>
+
+                <tr>
+                    <td bgcolor="#f0f8ff"> 도서 판매 여부 </td>
+                    <td> {{ detail.saleYn }} </td>
+                    <td bgcolor="#f0f8ff"> 도서 카테고리 정보 </td>
+                    <td> {{ detail.category }} </td>
+                </tr>
+
+                <tr>
+                    <td bgcolor="#f0f8ff"> 도서 표지 썸네일 </td>
+                    <td> {{ detail.thumbnail }} </td>
+                    <td bgcolor="#f0f8ff"> 도서 바코드 </td>
+                    <td> {{ detail.barcode }} </td>
+                </tr>
+
+                <tr class="table-primary">
+                    <td bgcolor="#f0f8ff"> 교보문고 전자책 바코드 정보 </td>
+                    <td> {{ detail.ebook_barcode }} </td>
+                    <td bgcolor="#f0f8ff"> 도서 상태 정보 </td>
+                    <td> {{ detail.status }} </td>
+                </tr>
+            </tbody>
+        </table>
         <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
     </div>
 </body>

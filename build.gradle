@@ -84,4 +84,6 @@ dependencies {
 
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("com.h2database:h2")
+
+	compile "org.springframework.boot:spring-boot-configuration-processor"
 }

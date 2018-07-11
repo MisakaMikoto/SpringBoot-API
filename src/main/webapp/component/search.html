@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        .modal-dialog {
+            width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center" style="margin-top: 50px;" ng-controller="searchController">
+        <div style="margin-top: 10px; margin-left: 90%;">
+            <span id="memberName" style="margin-right: 5px;"></span>
+            <button type="button" class="btn btn-primary" ng-click="logout()">Logout</button>
+        </div>
+
+        <div class="input-group" style="width: 350px;">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="query" type="text" class="form-control" ng-model="query" name="query" placeholder="검색어">
+
+            <select class="form-control" id="size">
+                <option value="0">검색 개수</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+            </select>
+
+            <select class="form-control" id="sort">
+                <option value="none">정렬 기준</option>
+                <option value="accuracy">정확도순</option>
+                <option value="recency">최신순</option>
+                <option value="sales">판매량순</option>
+            </select>
+
+        </div>
+
+        <div style="width: 500px; margin-top: 35px;">
+            <button type="button" id="search" class="btn btn-primary" ng-click="search()">Search</button>
+            <button type="button" class="btn btn-primary" ng-click="goHistories()">Search Histories</button>
+        </div>
+
+        <div>
+            <table class="table" style="margin-top: 35px;">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">도서 제목</th>
+                    <th scope="col">도서 저자</th>
+                    <th scope="col">도서 출판사</th>
+                    <th scope="col">도서 정가</th>
+                    <th scope="col">도서 판매가</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="book in books track by $index">
+                    <td> {{ $index + 1 }}</td>
+                    <td> <u ng-click="showDetail($index + 1)" style="cursor: pointer"> {{ book.title }} </u> </td>
+                    <td> {{ book.authors }}</td>
+                    <td> {{ book.publisher }}</td>
+                    <td> {{ book.price }} 원 </td>
+                    <td> {{ book.salePrice }} 원 </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <span ng-repeat="page in pageList track by $index">
+                <span>
+                    <u ng-click="searchPage($index + 1)" style="cursor: pointer"> {{ page + 1 }} </u>
+                </span>
+            </span>
+        </div>
+    </div>
+</body>
+</html>
