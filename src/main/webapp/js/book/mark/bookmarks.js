@@ -1,0 +1,3 @@
+class BookMakrs {
+    constructor() {}
+}

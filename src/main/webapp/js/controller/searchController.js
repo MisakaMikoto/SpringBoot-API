@@ -2,6 +2,7 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
 
     var pagination = new Pagination();
     var search = new Search();
+    var bookMark = new BookMakrs();
 
     setUserName();
 
