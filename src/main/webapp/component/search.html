@@ -48,6 +48,10 @@
             <button type="button" class="btn btn-primary" ng-click="goHistories()">검색 히스토리</button>
         </div>
 
+        <div style="float: left; margin-left: 10px;">
+            <span id="totalCount"></span>
+        </div>
+
         <div>
             <table class="table" style="margin-top: 35px; display: none">
                 <thead>
@@ -73,14 +77,8 @@
                 </tbody>
             </table>
         </div>
-
-        <div style="margin-top: 50px;">
-            <span ng-repeat="page in pageList track by $index">
-                <span>
-                    <u ng-click="searchPage($index + 1)" style="cursor: pointer"> {{ page + 1 }} </u>
-                </span>
-            </span>
-        </div>
+    </div>
+    <div style="margin-top: 50px;" id="pagination">
     </div>
 </body>
 </html>

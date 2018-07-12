@@ -1,14 +1,12 @@
 app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModal', function ($scope, $location, $cookies, $uibModal) {
 
+    var pagination = new Pagination();
     var search = new Search();
+
     setUserName();
 
     $scope.search = () => {
-        searchForKakao(1);
-    };
-
-    $scope.searchPage = (pageIndex) => {
-        searchForKakao(pageIndex);
+        searchForKakao(1, false);
     };
 
     $scope.showDetail = (index) => {
@@ -48,17 +46,21 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
         });
     }
 
-    function searchForKakao(pageIndex) {
+    function searchForKakao(pageIndex, isPageCall) {
         $scope.books = [];
 
         if(search.validSearch()) {
             let searchPromise = search.searchKakaoAPI($scope.query, pageIndex, $cookies.get('memberId'));
             searchPromise.then((response) => {
-                if (response.books.length > 0) {
+                if (response.books !== undefined) {
                     $('.table').show();
                     $scope.books = response.books;
-                    $scope.pageList = search.pageList;
                     $scope.$apply();
+
+                    if(!isPageCall) {
+                        $('#pagination').empty();
+                        createPagination(response.pagination);
+                    }
 
                 } else {
                     alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
@@ -70,4 +72,14 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
             });
         }
     }
+
+    function createPagination(responsePagination) {
+        pagination.lastPageNumber = Number(responsePagination.pageableCount / Number($("#size option:selected").val()));
+        pagination.pageCount = Number(responsePagination.pageCount);
+        pagination.createPage(searchPage);
+    }
+
+    function searchPage (pageIndex) {
+        searchForKakao(pageIndex, true);
+    };
 }]);

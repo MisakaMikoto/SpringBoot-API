@@ -1,24 +1,15 @@
 class Search {
     constructor() {
         this._booksJSON = '';
-        this._pageList = [];
+        this._paginationJSON = '';
     }
 
     set booksJSON(booksJSON) {
         this._booksJSON = booksJSON;
     }
 
-    set pageList(paginationJSON) {
-        this._pageList = [];
-
-        let pageCount = Number(paginationJSON.pageableCount / Number($("#size option:selected").val()));
-        for(let i = 0; i < pageCount; i++) {
-            this._pageList.push(i);
-        }
-    }
-
-    get pageList() {
-        return this._pageList;
+    set paginationJSON(paginationJSON) {
+        this._paginationJSON = paginationJSON;
     }
 
     searchKakaoAPI(query, pageIndex, memberId) {
@@ -30,16 +21,18 @@ class Search {
         let commonRequestPromise = new CommonRequestPromise();
         return commonRequestPromise.get('/books?query=' + sendQuery + "&page=" + sendPage + "&sort=" + sendSort + "&size=" + sendSize + "&memberId=" + memberId)
             .then((response) => {
-
                 let parseJSON = JSON.parse(response);
 
-                let booksJSON = parseJSON.books;
-                let paginationJSON = parseJSON.pagination;
+                if(parseJSON.status !== undefined) {
+                    return parseJSON
 
-                this.booksJSON = booksJSON;
-                this.pageList = paginationJSON;
+                } else {
+                    this.booksJSON = parseJSON.books;
+                    this.paginationJSON = parseJSON.pagination;
+                    $('#totalCount').html('총 ' + parseJSON.pagination.pageableCount + ' 건');
 
-                return JSON.parse(response);
+                    return parseJSON;
+                }
 
         }, function(error) {
             console.error('Failed!', error);

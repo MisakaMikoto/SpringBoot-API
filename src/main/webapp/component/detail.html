@@ -14,6 +14,9 @@
                 <tr>
                     <td bgcolor="#f0f8ff"> 도서 제목 </td>
                     <td> {{ detail.title }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 책 링크 (URL) </td>
                     <td> {{ detail.url }} </td>
                 </tr>
@@ -26,28 +29,39 @@
                 <tr class="table-primary">
                     <td bgcolor="#f0f8ff"> ISBN 번호 </td>
                     <td> {{ detail.isbn }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 도서 출판 날짜 </td>
                     <td> {{ detail.datetime }} </td>
-
                 </tr>
 
                 <tr class="table-primary">
                     <td bgcolor="#f0f8ff"> 도서 저자 리스트 </td>
                     <td> {{ detail.authors }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 번역자 리스트 </td>
                     <td> {{ detail.translators }} </td>
                 </tr>
 
                 <tr class="table-primary">
                     <td bgcolor="#f0f8ff"> 도서 정가 </td>
-                    <td> {{ detail.price }} </td>
+                    <td> {{ detail.price }} 원 </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 도서 판매가 </td>
-                    <td> {{ detail.salePrice }} </td>
+                    <td> {{ detail.salePrice }} 원 </td>
                 </tr>
 
                 <tr>
                     <td bgcolor="#f0f8ff"> 도서 판매 여부 </td>
                     <td> {{ detail.saleYn }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 도서 카테고리 정보 </td>
                     <td> {{ detail.category }} </td>
                 </tr>
@@ -55,13 +69,19 @@
                 <tr>
                     <td bgcolor="#f0f8ff"> 도서 표지 썸네일 </td>
                     <td> {{ detail.thumbnail }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 도서 바코드 </td>
                     <td> {{ detail.barcode }} </td>
                 </tr>
 
-                <tr class="table-primary">
+                <tr>
                     <td bgcolor="#f0f8ff"> 교보문고 전자책 바코드 정보 </td>
                     <td> {{ detail.ebook_barcode }} </td>
+                </tr>
+
+                <tr>
                     <td bgcolor="#f0f8ff"> 도서 상태 정보 </td>
                     <td> {{ detail.status }} </td>
                 </tr>
