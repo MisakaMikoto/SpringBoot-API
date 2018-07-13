@@ -1,15 +1,10 @@
 class Search {
     constructor() {
         this._booksJSON = '';
-        this._paginationJSON = '';
     }
 
     set booksJSON(booksJSON) {
         this._booksJSON = booksJSON;
-    }
-
-    set paginationJSON(paginationJSON) {
-        this._paginationJSON = paginationJSON;
     }
 
     searchKakaoAPI(query, pageIndex, memberId) {
@@ -19,7 +14,7 @@ class Search {
         let sendPage = Number(pageIndex);
 
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/books?query=' + sendQuery + "&page=" + sendPage + "&sort=" + sendSort + "&size=" + sendSize + "&memberId=" + memberId)
+        return commonRequestPromise.get('/v1/book/search/books?query=' + sendQuery + "&page=" + sendPage + "&sort=" + sendSort + "&size=" + sendSize + "&memberId=" + memberId)
             .then((response) => {
                 let parseJSON = JSON.parse(response);
 

@@ -11,6 +11,6 @@ public class SessionInterceptorConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SessionInterceptor())
-                .addPathPatterns("/books", "/histories");
+                .addPathPatterns("/v1/book/**", "/vi/history/**", "/vi/bookmark/**");
     }
 }

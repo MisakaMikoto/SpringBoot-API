@@ -1,5 +1,9 @@
 app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModal', function ($scope, $location, $cookies, $uibModal) {
 
+    if($cookies.get('memberId') === undefined) {
+        disconnect();
+    }
+
     var pagination = new Pagination();
     var search = new Search();
     var bookMark = new BookMakrs();
@@ -22,13 +26,6 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
     $scope.logout = () => {
         logout();
     };
-
-    function logout() {
-        $cookies.remove('memberId');
-        $cookies.remove('memberName');
-        $location.path('/');
-        $scope.$apply();
-    }
 
     function setUserName() {
         let memberName = $cookies.get('memberName') + " 님 ";
@@ -64,8 +61,7 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
                     }
 
                 } else {
-                    alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
-                    logout();
+                    disconnect();
                 }
 
             }, (error) => {
@@ -83,4 +79,22 @@ app.controller('searchController', ['$scope', '$location', '$cookies', '$uibModa
     function searchPage (pageIndex) {
         searchForKakao(pageIndex, true);
     };
+
+    function logout() {
+        $cookies.remove('memberId');
+        $cookies.remove('memberName');
+        alert('로그인 페이지로 돌아갑니다.');
+        $location.path('/');
+        $scope.$apply();
+    }
+
+    function disconnect() {
+        if($cookies.get('memberId') !== undefined && $cookies.get('memberName') !== undefined) {
+            $cookies.remove('memberId');
+            $cookies.remove('memberName');
+        }
+        alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
+        $location.path('/');
+        $scope.$apply();
+    }
 }]);

@@ -3,7 +3,7 @@ class SearchHistory {
 
     getList(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/histories?memberId=' + memberId).then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/id').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
@@ -13,7 +13,7 @@ class SearchHistory {
 
     getListByQuery(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/histories/query?memberId=' + memberId).then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/query').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
@@ -23,7 +23,7 @@ class SearchHistory {
 
     getListByDatetime(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/histories/datetime?memberId=' + memberId).then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/datetime').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
@@ -42,7 +42,7 @@ class SearchHistory {
         });
 
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.delete('/histories?memberId=' + memberId + '&ids=' + ids).then((response) => {
+        return commonRequestPromise.delete('/v1/history/' + memberId + '?ids=' + ids).then((response) => {
             return JSON.parse(response);
 
         }, function(error) {

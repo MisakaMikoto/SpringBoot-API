@@ -1,5 +1,9 @@
 app.controller('searchHistoryController', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
 
+    if($cookies.get('memberId') === undefined) {
+        disconnect();
+    }
+
     var searchHistory = new SearchHistory();
 
     bindSelectChange();
@@ -11,8 +15,7 @@ app.controller('searchHistoryController', ['$scope', '$location', '$cookies', fu
             $scope.$apply();
 
         } else {
-            alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
-            logout();
+            disconnect();
         }
     }, (error) => {
         console.error('Failed!', error);
@@ -59,8 +62,7 @@ app.controller('searchHistoryController', ['$scope', '$location', '$cookies', fu
                         $scope.$apply();
 
                     } else {
-                        alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
-                        logout();
+                        disconnect();
                     }
                 }, (error) => {
                     console.error('Failed!', error);
@@ -74,8 +76,7 @@ app.controller('searchHistoryController', ['$scope', '$location', '$cookies', fu
                         $scope.$apply();
 
                     } else {
-                        alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
-                        logout();
+                        disconnect();
                     }
                 }, (error) => {
                     console.error('Failed!', error);
@@ -88,9 +89,12 @@ app.controller('searchHistoryController', ['$scope', '$location', '$cookies', fu
         });
     }
 
-    function logout() {
-        $cookies.remove('memberId');
-        $cookies.remove('memberName');
+    function disconnect() {
+        if($cookies.get('memberId') !== undefined && $cookies.get('memberName') !== undefined) {
+            $cookies.remove('memberId');
+            $cookies.remove('memberName');
+        }
+        alert('세션이 종료되었습니다. 로그인 페이지로 돌아갑니다.');
         $location.path('/');
         $scope.$apply();
     }

@@ -56,7 +56,6 @@
             <table class="table" style="margin-top: 35px; display: none">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">도서 제목</th>
                     <th scope="col">도서 저자</th>
                     <th scope="col">도서 출판사</th>
@@ -68,7 +67,6 @@
 
                 <tbody>
                 <tr ng-repeat="book in books track by $index">
-                    <td> {{ $index + 1 }}</td>
                     <td> <u ng-click="showDetail($index + 1)" style="cursor: pointer"> {{ book.title }} </u> </td>
                     <td> {{ book.authors }}</td>
                     <td> {{ book.publisher }}</td>
