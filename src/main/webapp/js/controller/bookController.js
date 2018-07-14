@@ -40,6 +40,7 @@ app.controller('bookController', ['$scope', '$location', '$cookies', '$uibModal'
         $uibModal.open({
             templateUrl: '/component/detail.html',
             scope: $scope,
+            backdrop: true,
             controller: function ($scope, $uibModalInstance) {
                 $scope.ok = function () {
                     $uibModalInstance.close();

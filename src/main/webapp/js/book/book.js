@@ -23,7 +23,6 @@ class Book {
 
                 } else {
                     this.booksJSON = parseJSON.books;
-                    this.paginationJSON = parseJSON.pagination;
                     $('#totalCount').html('총 ' + parseJSON.pagination.pageableCount + ' 건');
 
                     return parseJSON;
@@ -61,7 +60,7 @@ class Book {
     }
 
     validSearch() {
-        if($('#query').val().length == "") {
+        if($('#query').val().trim().length == "") {
             alert("검색어를 입력해 주세요.");
             return false;
 

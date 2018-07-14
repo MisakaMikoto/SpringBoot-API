@@ -28,6 +28,7 @@
                 <th scope="col">제목</th>
                 <th scope="col">링크 URL</th>
                 <th scope="col">책 이미지</th>
+                <th scope="col">판매 금액</th>
                 <th scope="col">판매 상태</th>
             </tr>
             </thead>
@@ -37,6 +38,7 @@
                 <td> {{ searchBookmark.title }} </td>
                 <td> <a href="{{ searchBookmark.url }}"> {{ searchBookmark.url }} </a> </td>
                 <td id="thumbnail"> <img ng-src="{{ searchBookmark.thumbnail }}"> </td>
+                <td> {{ searchBookmark.salePrice }} </td>
                 <td> {{ searchBookmark.status }} </td>
             </tr>
             </tbody>

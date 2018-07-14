@@ -22,20 +22,25 @@ app.controller('bookHistoryController', ['$scope', '$location', '$cookies', func
 
         $scope.delete = () => {
             if (confirm("선택한 검색 히스토리를 삭제하시겠습니까?") == true) {
-                let searchBookHistoryPromise = bookHistory.deleteList($cookies.get('memberId'));
-                searchBookHistoryPromise.then((response) => {
-                    if(response instanceof Array) {
-                        $scope.searchHistories = response;
-                        $scope.$apply();
+                if(bookHistory.validateDeleteList()) {
+                    let searchBookHistoryPromise = bookHistory.deleteList($cookies.get('memberId'));
+                    searchBookHistoryPromise.then((response) => {
+                        if (response instanceof Array) {
+                            $scope.searchHistories = response;
+                            $scope.$apply();
 
-                    } else {
-                        disconnect();
-                        $scope.$apply();
-                    }
+                        } else {
+                            disconnect();
+                            $scope.$apply();
+                        }
 
-                }, (error) => {
-                    console.error('Failed!', error);
-                });
+                    }, (error) => {
+                        console.error('Failed!', error);
+                    });
+
+                } else {
+                    alert("선택된 검색 히스토리가 없습니다.")
+                }
             } else {
                 return;
             }

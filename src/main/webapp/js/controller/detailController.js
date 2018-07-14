@@ -25,6 +25,7 @@ app.controller('detailController', ['$scope', '$location', '$cookies', function 
                 bookmarkPromise.then((response) => {
                     if (response.title) {
                         alert(response.title + " 책이 북마킹에 추가되었습니다.");
+                        $('#ok').trigger('click');
 
                     } else {
                         alert("북마킹에 실패하였습니다.");

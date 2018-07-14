@@ -27,7 +27,7 @@ public class Bookmark {
     String price;
 
     @Column
-    String salePrice;
+    Integer salePrice;
 
     @Column
     String status;

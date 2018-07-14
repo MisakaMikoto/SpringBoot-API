@@ -77,4 +77,13 @@ class Bookmarks {
             console.error('Failed!', error);
         });
     }
+
+    validateDeleteList() {
+        if($('input[type=checkbox]:checked').length > 0) {
+            return true;
+
+        }  else {
+            return false;
+        }
+    }
 }

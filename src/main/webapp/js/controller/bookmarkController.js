@@ -67,20 +67,26 @@ app.controller('bookmarkController', ['$scope', '$location', '$cookies', functio
 
     $scope.delete = () => {
         if (confirm("선택한 북마크를 삭제하시겠습니까?") == true) {
-            let searchBookmarkPromise = bookmark.deleteList($cookies.get('memberId'));
-            searchBookmarkPromise.then((response) => {
-                if(response instanceof Array) {
-                    $scope.searchBookmarks = response;
-                    $scope.$apply();
+            if(bookmark.validateDeleteList()) {
+                let searchBookmarkPromise = bookmark.deleteList($cookies.get('memberId'));
+                searchBookmarkPromise.then((response) => {
+                    if (response instanceof Array) {
+                        $scope.searchBookmarks = response;
+                        $scope.$apply();
 
-                } else {
-                    disconnect();
-                    $scope.$apply();
-                }
+                    } else {
+                        disconnect();
+                        $scope.$apply();
+                    }
 
-            }, (error) => {
-                console.error('Failed!', error);
-            });
+                }, (error) => {
+                    console.error('Failed!', error);
+                });
+
+            } else {
+                alert("선택한 북마크가 없습니다.");
+            }
+
         } else {
             return;
         }
