@@ -1,17 +1,15 @@
-app.controller("signinController", ['$scope', '$location', function ($scope, $location) {
+app.controller('modifyController', ['$scope', '$location', '$cookies', function ($scope, $location, $cookies) {
+    var modify = new Modify();
 
-    var signin = new Signin();
-
-    $scope.create = () => {
-        if(signin.validSignin()) {
+    $scope.modify = () => {
+        if(modify.validateModify()) {
             let params = {
                 id: $scope.id,
                 password: $scope.password,
-                name: $scope.name
+                modifyPassword: $scope.modifyPassword
             };
-
-            let signinPromise = signin.createAccount(params);
-            signinPromise.then((response) => {
+            let loginPromise = modify.checkPassword(params);
+            loginPromise.then((response) => {
                 if (response.status) {
                     alert(response.message);
                     $location.path("/");
@@ -20,7 +18,6 @@ app.controller("signinController", ['$scope', '$location', function ($scope, $lo
                 } else {
                     alert(response.message);
                 }
-
             }, (error) => {
                 console.error('Failed!', error);
             });

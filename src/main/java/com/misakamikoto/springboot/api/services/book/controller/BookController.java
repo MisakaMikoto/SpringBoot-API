@@ -1,8 +1,8 @@
 package com.misakamikoto.springboot.api.services.book.controller;
 
 import com.misakamikoto.springboot.api.services.book.dto.Search;
-import com.misakamikoto.springboot.api.services.book.service.BookSearchHistoryService;
-import com.misakamikoto.springboot.api.services.book.service.BookSearchService;
+import com.misakamikoto.springboot.api.services.book.service.BookHistoryService;
+import com.misakamikoto.springboot.api.services.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 
 @Controller
-public class BookSearchController {
+public class BookController {
 
     @Autowired
-    BookSearchService bookSearchService;
+    BookService bookService;
 
     @Autowired
-    BookSearchHistoryService bookSearchHistoryService;
+    BookHistoryService bookHistoryService;
 
     @GetMapping("/v1/book/search/books")
     public ResponseEntity search(
@@ -29,8 +29,8 @@ public class BookSearchController {
             @RequestParam("size") int size,
             @RequestParam("memberId") String memberId) throws IOException {
 
-        this.bookSearchHistoryService.save(query, memberId);
-        Search search = bookSearchService.getBooks(query, sort, page, size);
+        this.bookHistoryService.save(query, memberId);
+        Search search = bookService.getBooks(query, sort, page, size);
         return new ResponseEntity<>(search, HttpStatus.OK);
     }
 }

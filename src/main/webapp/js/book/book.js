@@ -1,4 +1,4 @@
-class Search {
+class Book {
     constructor() {
         this._booksJSON = '';
     }

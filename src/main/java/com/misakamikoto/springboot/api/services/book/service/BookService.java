@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class BookSearchService {
+public class BookService {
 
     private Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)

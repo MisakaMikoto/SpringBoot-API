@@ -1,7 +1,7 @@
 package com.misakamikoto.springboot.api.services.book.service;
 
 import com.misakamikoto.springboot.api.services.book.dto.History;
-import com.misakamikoto.springboot.api.services.book.repository.BookSearchHistoryRepository;
+import com.misakamikoto.springboot.api.services.book.repository.BookHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,24 +13,24 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class BookSearchHistoryService {
+public class BookHistoryService {
 
     @Autowired
-    BookSearchHistoryRepository bookSearchHistoryRepository;
+    BookHistoryRepository bookHistoryRepository;
 
-    public List<History> getListById(String memberId){
-        return StreamSupport.stream(this.bookSearchHistoryRepository.findAll().spliterator(), false)
+    public List<History> getListOrderId(String memberId){
+        return StreamSupport.stream(this.bookHistoryRepository.findAll().spliterator(), false)
                 .filter(searchHistory -> memberId.equals(searchHistory.getMemberId())).collect(Collectors.toList());
     }
 
-    public List<History> getListByQuery(String memberId){
-        List<History> searchHistories = this.getListById(memberId);
+    public List<History> getListOrderQuery(String memberId){
+        List<History> searchHistories = this.getListOrderId(memberId);
         searchHistories.sort(Comparator.comparing(History::getQuery));
         return searchHistories;
     }
 
-    public List<History> getListByDatetime(String memberId){
-        List<History> searchHistories = this.getListById(memberId);
+    public List<History> getListOrderDatetime(String memberId){
+        List<History> searchHistories = this.getListOrderId(memberId);
         searchHistories.sort(Comparator.comparing(History::getDatetime));
         return searchHistories;
     }
@@ -41,14 +41,14 @@ public class BookSearchHistoryService {
         bookHistory.setMemberId(memberId);
         bookHistory.setDatetime(this.createCurrentDateTime());
 
-        this.bookSearchHistoryRepository.save(bookHistory);
+        this.bookHistoryRepository.save(bookHistory);
     }
 
     public List<History> deleteHistories(String memberId, String historyIds) {
         for(String id : historyIds.split(",")) {
-            this.bookSearchHistoryRepository.deleteById(Long.valueOf(id));
+            this.bookHistoryRepository.deleteById(Long.valueOf(id));
         }
-        return this.getListById(memberId);
+        return this.getListOrderId(memberId);
     }
 
     private String createCurrentDateTime() {

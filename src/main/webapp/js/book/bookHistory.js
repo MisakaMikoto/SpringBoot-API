@@ -1,9 +1,7 @@
-class SearchHistory {
-    constructor(){};
-
-    getList(memberId) {
+class BookHistory {
+    getListOrderId(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/v1/history/' + memberId + '/id').then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/order/id').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
@@ -11,9 +9,9 @@ class SearchHistory {
         });
     }
 
-    getListByQuery(memberId) {
+    getListOrderQuery(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/v1/history/' + memberId + '/query').then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/order/query').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {
@@ -21,9 +19,9 @@ class SearchHistory {
         });
     }
 
-    getListByDatetime(memberId) {
+    getListOrderDatetime(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
-        return commonRequestPromise.get('/v1/history/' + memberId + '/datetime').then((response) => {
+        return commonRequestPromise.get('/v1/history/' + memberId + '/order/datetime').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {

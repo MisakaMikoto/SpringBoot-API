@@ -18,4 +18,6 @@ public class Member {
 
     @Column
     private String name;
+
+    private String modifyPassword;
 }

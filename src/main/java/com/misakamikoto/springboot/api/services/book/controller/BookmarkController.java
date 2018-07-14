@@ -16,16 +16,40 @@ public class BookmarkController {
     @Autowired
     BookmarkService bookmarkService;
 
-    @GetMapping("/v1/book/bookmarks")
-    public ResponseEntity getListById(@RequestParam("memberId") String memberId) {
-        List<Bookmark> bookMarks = this.bookmarkService.getListById(memberId);
+    @GetMapping("/v1/bookmark/{memberId}/order/id")
+    public ResponseEntity getListOrderId(@PathVariable("memberId") String memberId) {
+        List<Bookmark> bookMarks = this.bookmarkService.getListOrderId(memberId);
         return new ResponseEntity<>(bookMarks, HttpStatus.OK);
-
     }
 
-    @PostMapping("/v1/bookmarks/{memberId}/")
-    public ResponseEntity save(@PathVariable String memberId, @RequestBody Bookmark bookMark) {
-        Bookmark saveBookMark = this.bookmarkService.save(bookMark);
+    @GetMapping("/v1/bookmark/{memberId}/order/title")
+    public ResponseEntity getListOrderTitle(@PathVariable("memberId") String memberId) {
+        List<Bookmark> bookMarks = this.bookmarkService.getListOrderTitle(memberId);
+        return new ResponseEntity<>(bookMarks, HttpStatus.OK);
+    }
+
+    @GetMapping("/v1/bookmark/{memberId}/order/status")
+    public ResponseEntity getListOrderStatus(@PathVariable("memberId") String memberId) {
+        List<Bookmark> bookMarks = this.bookmarkService.getListOrderStatus(memberId);
+        return new ResponseEntity<>(bookMarks, HttpStatus.OK);
+    }
+
+    @PostMapping("/v1/bookmark/{memberId}")
+    public ResponseEntity save(@PathVariable("memberId") String memberId, @RequestBody Bookmark bookmark) {
+        bookmark.setMemberId(memberId);
+        Bookmark saveBookMark = this.bookmarkService.save(bookmark);
         return new ResponseEntity<>(saveBookMark, HttpStatus.OK);
+    }
+
+    @GetMapping("/v1/bookmark/{memberId}/{isbn}")
+    public ResponseEntity getListByIsbn(@PathVariable("memberId") String memberId, @PathVariable("isbn") String isbn) {
+        List<Bookmark> bookMarks = this.bookmarkService.getListByIsbn(memberId, isbn);
+        return new ResponseEntity<>(bookMarks, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/v1/bookmark/{memberId}")
+    public ResponseEntity deleteBookmarks(@PathVariable("memberId") String memberId, @RequestParam("ids") String ids) {
+        List<Bookmark> bookmarks = this.bookmarkService.deleteBookmarks(memberId, ids);
+        return new ResponseEntity<>(bookmarks, HttpStatus.OK);
     }
 }

@@ -15,4 +15,18 @@ class Login {
             console.error("Failed!", error);
         });
     }
+
+    validLogin() {
+        if($('#id').val().length == "") {
+            alert("아이디를 입력해 주세요.");
+            return false;
+
+        } else if($('#password' ).val() == "") {
+            alert("암호를 입력해 주세요.");
+            return false;
+
+        } else {
+            return true;
+        }
+    }
 }

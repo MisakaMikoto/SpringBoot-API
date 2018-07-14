@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <div class="center" style="margin-top: 50px;" ng-controller="searchController">
+    <div class="center" style="margin-top: 50px;" ng-controller="bookController">
         <div style="margin-top: 10px; margin-left: 90%;">
             <span id="memberName" style="margin-right: 5px;"></span>
             <button type="button" class="btn btn-primary" ng-click="logout()">로그아웃</button>
@@ -45,7 +45,8 @@
 
         <div style="width: 500px; margin-top: 35px;">
             <button type="button" id="search" class="btn btn-primary" ng-click="search()">검색</button>
-            <button type="button" class="btn btn-primary" ng-click="goHistories()">검색 히스토리</button>
+            <button type="button" class="btn btn-primary" ng-click="goHistories()">최근 검색어 히스토리</button>
+            <button type="button" class="btn btn-primary" ng-click="goBookmarks()">북마크</button>
         </div>
 
         <div style="float: left; margin-left: 10px;">
@@ -61,7 +62,6 @@
                     <th scope="col">도서 출판사</th>
                     <th scope="col">도서 정가</th>
                     <th scope="col">도서 판매가</th>
-                    <th scope="col">북마크</th>
                 </tr>
                 </thead>
 
@@ -72,7 +72,6 @@
                     <td> {{ book.publisher }}</td>
                     <td> {{ book.price }} 원 </td>
                     <td> {{ book.salePrice }} 원 </td>
-                    <td> <input type="checkbox"></td>
                 </tr>
                 </tbody>
             </table>

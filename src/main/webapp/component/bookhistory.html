@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<div class="center" style="margin-top: 100px;" ng-controller="searchHistoryController">
+<div class="center" style="margin-top: 100px;" ng-controller="bookHistoryController">
 
     <div style="float: left; margin-left: 10px;">
         <button type="button" class="btn btn-primary" ng-click="delete()">삭제</button>
@@ -24,15 +24,15 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">검색 시간</th>
                 <th scope="col">검색 내용</th>
+                <th scope="col">검색 시간</th>
             </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="searchHistory in searchHistories">
                     <td><input type="checkbox" id="{{ searchHistory.id }}"></td>
-                    <td> {{ searchHistory.datetime }} </td>
                     <td> {{ searchHistory.query }} </td>
+                    <td> {{ searchHistory.datetime }} </td>
                 </tr>
             </tbody>
         </table>

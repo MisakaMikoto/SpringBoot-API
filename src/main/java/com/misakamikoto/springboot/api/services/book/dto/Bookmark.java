@@ -28,4 +28,10 @@ public class Bookmark {
 
     @Column
     String salePrice;
+
+    @Column
+    String status;
+
+    @Column
+    String isbn;
 }

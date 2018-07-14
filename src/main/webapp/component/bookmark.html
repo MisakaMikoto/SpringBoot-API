@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="center" style="margin-top: 100px;" ng-controller="bookmarkController">
+
+    <div style="float: left; margin-left: 10px;">
+        <button type="button" class="btn btn-primary" ng-click="delete()">삭제</button>
+        <button type="button" class="btn btn-primary" ng-click="back()">돌아가기</button>
+    </div>
+
+    <div>
+        <div style="float: right; margin-right: 10px;">
+            <select class="form-control" id="sort">
+                <option value="none">정렬 기준</option>
+                <option value="title">제목</option>
+                <option value="salePrice">판매 가격</option>
+                <option value="status">판매 상태</option>
+            </select>
+        </div>
+        <table class="table" style="margin-top: 10px;">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">제목</th>
+                <th scope="col">링크 URL</th>
+                <th scope="col">책 이미지</th>
+                <th scope="col">판매 상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="searchBookmark in searchBookmarks">
+                <td><input type="checkbox" id="{{ searchBookmark.id }}"></td>
+                <td> {{ searchBookmark.title }} </td>
+                <td> <a href="{{ searchBookmark.url }}"> {{ searchBookmark.url }} </a> </td>
+                <td id="thumbnail"> <img ng-src="{{ searchBookmark.thumbnail }}"> </td>
+                <td> {{ searchBookmark.status }} </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -29,6 +29,12 @@ public class LoginController {
         return new ResponseEntity<>(login, HttpStatus.OK);
     }
 
+    @PutMapping(path = "/v1/account/modify")
+    public ResponseEntity modify(@RequestBody Member member) {
+        Login login = this.loginService.modify(member);
+        return new ResponseEntity<>(login, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/v1/account/logout")
     public ResponseEntity logout() {
         Login login = new Login();

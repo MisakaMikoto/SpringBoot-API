@@ -60,6 +60,34 @@ class CommonRequestPromise {
         });
     }
 
+    put(url, params) {
+        var data = JSON.stringify(params);
+        // Return a new promise.
+        return new Promise(function(resolve, reject) {
+            // Do the usual XHR stuff
+            let req = new XMLHttpRequest();
+            req.open('PUT', url, true)
+            req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req.response);
+                }
+                else {
+                    reject(Error(req.statusText));
+                }
+            };
+
+            // Handle network errors
+            req.onerror = function() {
+                reject(Error('Network Error'));
+            };
+
+            // Make the request
+            req.send(data);
+        });
+    }
+
     delete(url) {
         // Return a new promise.
         return new Promise(function(resolve, reject) {
