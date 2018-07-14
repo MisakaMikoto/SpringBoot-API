@@ -16,7 +16,7 @@ public class BookHistoryController {
     BookHistoryService bookHistoryService;
 
     @GetMapping("/v1/history/{memberId}/order/id")
-    public ResponseEntity getList(@PathVariable("memberId") String memberId) {
+    public ResponseEntity getListOrderId(@PathVariable("memberId") String memberId) {
         List<History> searchHistories = this.bookHistoryService.getListOrderId(memberId);
         return new ResponseEntity<>(searchHistories, HttpStatus.OK);
     }
