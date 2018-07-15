@@ -15,6 +15,9 @@
     - cmd or terminal open. move to the checkout file root folder path (ex: c:/document/springBoot-API/)
     - build : gradlew build (build + jUnit test)
     - run : gradlew bootRun
+    
+  - Browser
+    - Chrome
 
 - Additional Implementations
   - Login Session
