@@ -9,7 +9,7 @@ app.controller('detailController', ['$scope', '$location', '$cookies', function 
         let bookmarkPromise = bookmark.getListToIsbn($cookies.get('memberId'), $scope.detail.isbn);
         bookmarkPromise.then((response) => {
             if(response.length > 0) {
-                if (response[0].isbn == $scope.detail.isbn) {
+                if (response[0].isbn == $scope.detail.isbn.trim()) {
                     $('#bookmarking').attr('class', 'btn btn-primary disabled');
                     $('#bookmarking').html("이 책은 이미 북마킹 되었습니다.");
                     angular.element($('#bookmarking')).unbind('click');
