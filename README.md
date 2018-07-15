@@ -16,7 +16,7 @@
     - build : gradlew build (build + jUnit test)
     - run : gradlew bootRun
     
-  - Browser
+  - Execute Browser
     - Chrome
 
 - Additional Implementations
