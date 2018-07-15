@@ -15,6 +15,7 @@ app.controller('bookHistoryController', ['$scope', '$location', '$cookies', func
 
             } else {
                 disconnect();
+                $scope.$apply();
             }
         }, (error) => {
             console.error('Failed!', error);

@@ -14,6 +14,7 @@ app.controller('bookmarkController', ['$scope', '$location', '$cookies', functio
 
             } else {
                 disconnect();
+                $scope.$apply();
             }
         }, (error) => {
             console.error('Failed!', error);

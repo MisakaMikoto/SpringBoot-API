@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.misakamikoto.springboot.api.ApiApplication;
 import com.misakamikoto.springboot.api.services.account.controller.LoginController;
+import com.misakamikoto.springboot.api.services.account.dto.Login;
 import com.misakamikoto.springboot.api.services.account.dto.Member;
 import name.falgout.jeffrey.testing.junit5.MockitoExtension;
 import org.junit.FixMethodOrder;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -77,7 +79,7 @@ public class LoginControllerTest {
                 .andExpect(status().isOk());
     }
 
-    private String createDummyMember(String id, String name, String password, String modifyPassword) {
+    public static String createDummyMember(String id, String name, String password, String modifyPassword) {
         Gson gson = new GsonBuilder().create();
 
         Member member = new Member();
@@ -87,5 +89,15 @@ public class LoginControllerTest {
         member.setModifyPassword(modifyPassword);
 
         return gson.toJson(member);
+    }
+
+    public static Login createDummyLogin() {
+        Login login = new Login();
+        login.setMemberId("aa");
+        login.setMemberName("aa");
+        login.setMessage("로그인에 성공하였습니다.");
+        login.setStatus(true);
+
+        return login;
     }
 }

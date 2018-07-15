@@ -39,7 +39,7 @@ junitPlatform {
 	// selectors (optional)
 	// filters (optional)
 	// logManager (optional)
-	logManager 'org.apache.logging.log4j.jul.LogManager'
+	// logManager 'org.apache.logging.log4j.jul.LogManager'
 }
 
 dependencies {
