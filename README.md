@@ -1,6 +1,18 @@
 # SpringBoot-API
 
-- Install Guide
+- Install & Execute Guide
+  - Zip File Guide
+    - Download - https://github.com/MisakaMikoto/SpringBoot-API -> clone download -> zip download
+    - extracting zip file
+    - cmd or terminal open. move the extracting root folder path (ex: c:/document/springBoot-API/)
+    - build : gradlew build
+    - run : gradlew bootRun
+
+  - Checkout Guide
+    - Checkout - https://github.com/MisakaMikoto/SpringBoot-API.git
+    - cmd or terminal open. move the extracting root folder path (ex: c:/document/springBoot-API/)
+    - build : gradlew build
+    - run : gradlew bootRun
 
 - Additional Implementations
   - Login Session
