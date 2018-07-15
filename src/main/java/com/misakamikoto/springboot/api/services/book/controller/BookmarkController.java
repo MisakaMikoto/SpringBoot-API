@@ -34,6 +34,12 @@ public class BookmarkController {
         return new ResponseEntity<>(bookMarks, HttpStatus.OK);
     }
 
+    @GetMapping("/v1/bookmark/{memberId}/order/saleprice")
+    public ResponseEntity getListOrderSalePrice(@PathVariable("memberId") String memberId) {
+        List<Bookmark> bookMarks = this.bookmarkService.getListOrderSalePrice(memberId);
+        return new ResponseEntity<>(bookMarks, HttpStatus.OK);
+    }
+
     @PostMapping("/v1/bookmark/{memberId}")
     public ResponseEntity save(@PathVariable("memberId") String memberId, @RequestBody Bookmark bookmark) {
         bookmark.setMemberId(memberId);

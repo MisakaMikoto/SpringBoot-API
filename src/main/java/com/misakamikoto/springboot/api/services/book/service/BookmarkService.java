@@ -34,6 +34,12 @@ public class BookmarkService {
         return bookmarks;
     }
 
+    public List<Bookmark> getListOrderSalePrice(String memberId) {
+        List<Bookmark> bookmarks = this.getListOrderId(memberId);
+        bookmarks.sort(Comparator.comparing(Bookmark::getSalePrice));
+        return bookmarks;
+    }
+
     public List<Bookmark> getListByIsbn(String memberId, String isbn) {
         List<Bookmark> bookmarks = this.getListOrderId(memberId);
         return StreamSupport.stream(bookmarks.spliterator(), false)

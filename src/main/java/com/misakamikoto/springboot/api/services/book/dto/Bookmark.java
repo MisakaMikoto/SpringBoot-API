@@ -24,7 +24,7 @@ public class Bookmark {
     String thumbnail;
 
     @Column
-    String price;
+    Integer price;
 
     @Column
     Integer salePrice;

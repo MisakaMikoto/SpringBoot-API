@@ -4,8 +4,8 @@ class Bookmarks {
             title: $('#title').text().trim(),
             url: $('#url').text().trim(),
             thumbnail: $('#thumbnail').find('img').attr('ng-src').trim(),
-            price: $('#price').text().trim(),
-            salePrice: $('#salePrice').text().trim(),
+            price: Number($('#price').find('span').text().trim()),
+            salePrice: Number($('#salePrice').find('span').text().trim()),
             status: $('#status').text().trim(),
             isbn: $('#isbn').text().trim()
         };
@@ -42,6 +42,16 @@ class Bookmarks {
     getListOrderStatus(memberId) {
         let commonRequestPromise = new CommonRequestPromise();
         return commonRequestPromise.get('/v1/bookmark/' + memberId + '/order/status').then((response) => {
+            return JSON.parse(response);
+
+        }, function(error) {
+            console.error('Failed!', error);
+        });
+    }
+
+    getListOrderSalePrice(memberId) {
+        let commonRequestPromise = new CommonRequestPromise();
+        return commonRequestPromise.get('/v1/bookmark/' + memberId + '/order/saleprice').then((response) => {
             return JSON.parse(response);
 
         }, function(error) {

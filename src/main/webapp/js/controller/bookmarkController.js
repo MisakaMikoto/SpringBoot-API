@@ -58,6 +58,21 @@ app.controller('bookmarkController', ['$scope', '$location', '$cookies', functio
                     console.error('Failed!', error);
                 });
 
+            } else if('salePrice' == sort) {
+                let searchBookmarkPromise = bookmark.getListOrderSalePrice($cookies.get('memberId'));
+                searchBookmarkPromise.then((response) => {
+                    if (response instanceof Array) {
+                        $scope.searchBookmarks = response;
+                        $scope.$apply();
+
+                    } else {
+                        disconnect();
+                        $scope.$apply();
+                    }
+                }, (error) => {
+                    console.error('Failed!', error);
+                });
+
             } else {
                 // another case..
                 ;
