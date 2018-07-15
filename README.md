@@ -28,6 +28,7 @@
   - springfox swagger-ui 2.7.0
   - jUnit5 (jupiter) 5.1.0
   - mocktio-extension 1.0.0 
+  - tomcat-jdbc 8.0.30
   
 - Used OpenSource in Frontend
   - angular 1.6.4
