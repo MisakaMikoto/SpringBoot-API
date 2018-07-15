@@ -5,13 +5,13 @@
     - Download - https://github.com/MisakaMikoto/SpringBoot-API -> clone or download -> zip download
     - extracting zip file
     - cmd or terminal open. move to the extracting file(zip) root folder path (ex: c:/document/springBoot-API/)
-    - build : gradlew build
+    - build : gradlew build (build + jUnit test)
     - run : gradlew bootRun
 
   - Clone Guide
     - Checkout - https://github.com/MisakaMikoto/SpringBoot-API.git
     - cmd or terminal open. move to the checkout file root folder path (ex: c:/document/springBoot-API/)
-    - build : gradlew build
+    - build : gradlew build (build + jUnit test)
     - run : gradlew bootRun
 
 - Additional Implementations
