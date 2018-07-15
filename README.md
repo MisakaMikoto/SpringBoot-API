@@ -2,6 +2,16 @@
 
 - Install Guide
 
+- Additional Implementations
+  - Login Session
+  - Login Session redirect
+  - Login Session Interceptor
+  - Logging AOP (Pointcut)
+  - Swagger ui (/swagger-ui.html)
+  - Login Information Modfy
+  - JPA
+  - SPA
+
 - Used OpenSource in Backend
   - SpringBoot 
   - SpringBoot-tomcat-starter
