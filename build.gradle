@@ -45,7 +45,6 @@ junitPlatform {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 
-	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
 	compile('org.springframework.boot:spring-boot-starter-tomcat')
 
