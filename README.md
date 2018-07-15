@@ -1,7 +1,7 @@
 # SpringBoot-API
 
 - Install & Execute Guide
-  - JDK Install
+  - JDK 1.8 Install
     - http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
   - Download Guide
     - Download - https://github.com/MisakaMikoto/SpringBoot-API -> clone or download -> zip download
