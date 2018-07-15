@@ -12,7 +12,7 @@ class Signin {
     }
 
     validSignin() {
-        if($('#id').val().length == "") {
+        if($('#id').val().trim().length == "") {
             alert("아이디를 입력해 주세요.");
             return false;
 
