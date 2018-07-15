@@ -13,6 +13,7 @@
   - SPA
 
 - Used OpenSource in Backend
+  - Gradle
   - SpringBoot 
   - SpringBoot-tomcat-starter
   - SpringBoot-test-starter
