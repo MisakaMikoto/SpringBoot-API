@@ -13,7 +13,6 @@ import javax.servlet.Filter;
 import java.nio.charset.Charset;
 
 @Configuration
-@EnableAutoConfiguration
 public class CharacterConfig {
 
     @Bean

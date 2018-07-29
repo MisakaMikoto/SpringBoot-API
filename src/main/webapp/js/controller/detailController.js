@@ -6,7 +6,7 @@ app.controller('detailController', ['$scope', '$location', '$cookies', function 
     } else {
         var bookmark = new Bookmarks();
 
-        let bookmarkPromise = bookmark.getListToIsbn($cookies.get('memberId'), $scope.detail.isbn);
+        let bookmarkPromise = bookmark.getListToIsbn($cookies.get('memberId'), $scope.detail.isbn.trim());
         bookmarkPromise.then((response) => {
             if(response.length > 0) {
                 if (response[0].isbn == $scope.detail.isbn.trim()) {
